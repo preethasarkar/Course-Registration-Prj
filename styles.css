@@ -1,0 +1,14 @@
+h1{
+    color: red;
+    
+}
+
+div {
+    width:33%;
+    float:left;
+}
+
+.Admin{
+    cursor:pointer;
+    color: blue;
+}

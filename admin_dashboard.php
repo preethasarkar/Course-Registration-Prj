@@ -17,7 +17,14 @@
 
   // Check if admin is logged in
   if (isset($_SESSION['user_id'])) {
-    if ($_SESSION['role'] == 1) { ?>
+    if ($_SESSION['role'] == 1) {
+
+      if (isset($_GET['logout'])) {
+        session_destroy();
+        // Redirect back to "index.php" after logging out
+        header("location: /index.php");
+        exit();
+      } ?>
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5rem !important;">
         <div class="container-fluid">
@@ -39,9 +46,10 @@
           </div>
         </div>
       </nav>
-<?php
+  <?php
     }
   } ?>
 
 </body>
+
 </html>

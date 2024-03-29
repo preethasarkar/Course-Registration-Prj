@@ -33,6 +33,9 @@
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="faculty_dashboard.php">My Courses</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="faculty_add.php">Add Courses</a>
+        </li>
         </ul>
         </div>
         <div>

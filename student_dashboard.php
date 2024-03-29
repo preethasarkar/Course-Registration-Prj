@@ -73,11 +73,17 @@
         while ($row = $result->fetch_assoc()) {
             //Displays the courses as separate cards
             echo ' <div class="card" style="width: 25rem;">
-                    <img class="card-img-top" src="pic.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="bg1.jpg" alt="Card image cap">
                     <div class="card-body">
-                    <p class="card-text">Course Title: ' . $row["Course_Name"] . ' <br>
-                     Faculty : ' . $row["Faculty_ID"] . ' <br>
-                     L-T-P : ' . $row["LTP"] . ' <br>
+                    <p class="card-text">Course Title: ' . $row["Course_Name"] . ' <br>';
+            $sql1 = "SELECT Faculty_Name FROM Faculty WHERE Faculty_ID = '".$row["Faculty_ID"]."'";
+            $result1 = $conn->query($sql1);
+            if($result1->num_rows > 0) {
+                while($row1 = $result1->fetch_Assoc()) {
+                    echo 'Faculty : ' . $row1["Faculty_Name"] . ' <br>';
+                }
+            }
+                echo'L-T-P : ' . $row["LTP"] . ' <br>
                      Credits : ' . $row["Credits"] . ' <br>
                      Course Duration : ' . $row["Course_Start_Date"] . ' to ' . $row["Course_End_Date"] . '</p>
                      <a href="#" class="btn btn-primary drop-btn" data-reg-id="' . $row["Reg_ID"] . '">Drop Course</a>

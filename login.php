@@ -29,9 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: faculty_dashboard.php");
             } elseif ($_SESSION['role'] == 3) {
                 header("Location: student_dashboard.php");
-            } else {
-                // Default redirect if role is not recognized
-                header("Location: welcome.php");
             }
             exit();
         } else {

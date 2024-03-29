@@ -67,7 +67,7 @@
         while ($row = $result->fetch_assoc()) {
             //displays separate cards for each course
             echo  ' <div class="card" style="width: 25rem;">
-        <img class="card-img-top" src="pic.jpg" alt="Card image cap">
+        <img class="card-img-top" src="bg2.jpg" alt="Card image cap">
         <div class="card-body">
         <p class="card-text">Course Title: ' . $row["Course_Name"] . ' <br>
          L-T-P : ' . $row["LTP"] . ' <br>

@@ -1,40 +1,50 @@
 <?php
 // Include database connection
-include_once 'db.php'; 
+include_once 'db.php';
 
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $faculty_id = $_POST['faculty_id']; 
+
+    $username = $_POST['username'];
     $dept_id = $_POST['dept_id'];
-    $faculty_name=$_POST['faculty_name'];
-    $faculty_email=$_POST['faculty_email'];
-    $login_id=$_POST['login_id'];
-    
+    $faculty_name = $_POST['faculty_name'];
+    $faculty_email = $_POST['faculty_email'];
+    $password = $_POST['password'];
+    $role_id = 2;
+
     // Prepare the SQL statement to insert data into the student table
-    $sql = "INSERT INTO faculty(FACULTY_ID,Dept_ID,Faculty_Name,Faculty_Email,Login_ID) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $con->prepare($sql);
+    $sql1 = "INSERT INTO login ( Role_ID,Username,Password) VALUES (?,?,?)";
+    $stmt1 = $conn->prepare($sql1);
+    $stmt1->bind_param("iss", $role_id, $username, $password);
+    $stmt1->execute();
 
-    // Bind parameters and execute the statement
-    $stmt->bind_param("iissi", $faculty_id, $dept_id, $faculty_name, $faculty_email, $login_id);
-    $stmt->execute();
+    if ($stmt1->affected_rows == 1) {
+        $sql2 = "SELECT Login_ID from login order by Login_ID desc LIMIT 1";
+        $result = $conn->query($sql2);
+        $row = $result->fetch_assoc();
+        $login_id = $row['Login_ID'];
 
-    // Check if the insertion was successful
-    if ($stmt->affected_rows > 0) {
-        // Insertion successful
-        echo "Faculty record inserted successfully.";
+        $sql3 = "INSERT INTO faculty(Dept_ID,Faculty_Name,Faculty_Email,Login_ID) VALUES ('$dept_id','$faculty_name','$faculty_email','$login_id' )";
+        $result2 = $conn->query($sql3);
+
+        // Check if the insertion was successful
+        if ($result2 === TRUE) {
+            // Insertion successful
+            echo "Student record inserted successfully.";
+        } else {
+            // Insertion failed
+            echo "Error: Unable to insert student record.";
+        }
     } else {
-        // Insertion failed
-        echo "Error: Unable to insert student record.";
+        echo "Multiple rows";
     }
 
     // Close the statement
-    $stmt->close();
+    $stmt1->close();
 } else {
     // If the form was not submitted via POST method, return an error message
     echo "Error: Form submission method not recognized.";
 }
 
 // Close the database connection
-$con->close();
-?>
+$conn->close();

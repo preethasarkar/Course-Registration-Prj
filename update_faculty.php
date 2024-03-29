@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql .= $update_statement . " WHERE FACULTY_ID = ?";
 
     // Prepare the SQL statement
-    $stmt = $con->prepare($sql);
+    $stmt = $conn->prepare($sql);
 
     // Bind parameters and execute the statement
     $stmt->bind_param("i", $faculty_id);
@@ -58,5 +58,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close the database connection
-$con->close();
+$conn->close();
 ?>

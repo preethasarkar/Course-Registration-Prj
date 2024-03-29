@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_id=$_POST['student_id'];
 
     $sql="DELETE FROM student WHERE STUDENT_ID=?";
-    $stmt = $con->prepare($sql);
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $student_id);
     $stmt->execute();
 
@@ -25,5 +25,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close the database connection
-$con->close();
+$conn->close();
 ?>

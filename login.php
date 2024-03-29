@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        var_dump($password);
 
         // Prepare a SQL statement to retrieve the user with the provided username and password
         $sql = "SELECT * FROM login WHERE Username = '$username' AND Password = '$password'";

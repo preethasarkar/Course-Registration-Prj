@@ -26,7 +26,6 @@
 
     echo ' <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5rem !important;">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,6 +38,9 @@
             <a class="nav-link active" href="register.php" aria-current="page">Register</a>
         </li>
         </ul>
+        </div>
+        <div>
+            <a class="nav-link active" aria-current="page" href="show_detailsstud.php" style="color:#fff !important; padding-right:15px;">Profile</a>
         </div>
         <div>
             <a class="nav-link" href="?logout=true" style="color:#fff !important;">Logout</a>
@@ -78,6 +80,7 @@
                      L-T-P : ' . $row["LTP"] . ' <br>
                      Credits : ' . $row["Credits"] . ' <br>
                      Course Duration : ' . $row["Course_Start_Date"] . ' to ' . $row["Course_End_Date"] . '</p>
+                     <a href="#" class="btn btn-primary drop-btn" data-reg-id="' . $row["Reg_ID"] . '">Drop Course</a>
                     </div>
                 </div>';
         }
@@ -93,6 +96,27 @@
     $conn->close();
     ?>
 </body>
+
+<script>
+document.querySelectorAll('.drop-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const regId = this.getAttribute('data-reg-id');
+        
+        // Send AJAX request to register the course
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'drop_course.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                location.reload(); 
+            } else {
+                console.error('Error in dropping course:', xhr.statusText);
+            }
+        };
+        xhr.send(`reg_id=${regId}`);
+    });
+});
+</script>
 
 </html>
 

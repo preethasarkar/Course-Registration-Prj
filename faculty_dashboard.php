@@ -24,7 +24,6 @@
 
     echo ' <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5rem !important;">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,6 +36,9 @@
             <a class="nav-link active" aria-current="page" href="faculty_add.php">Add Courses</a>
         </li>
         </ul>
+        </div>
+        <div>
+            <a class="nav-link active" aria-current="page" href="show_detailsfac.php" style="color:#fff !important; padding-right:15px;">Profile</a>
         </div>
         <div>
             <a class="nav-link" href="?logout=true" style="color:#fff !important;">Logout</a>

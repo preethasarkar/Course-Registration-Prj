@@ -31,7 +31,6 @@ $user_id = $_SESSION['user_id'];
 
 echo ' <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5rem !important;">
         <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,6 +43,9 @@ echo ' <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5r
             <a class="nav-link active" href="register.php" aria-current="page">Register</a>
         </li>
         </ul>
+        </div>
+        <div>
+            <a class="nav-link active" aria-current="page" href="show_detailsstud.php" style="color:#fff !important; padding-right:15px;">Profile</a>
         </div>
         <div>
             <a class="nav-link" href="?logout=true" style="color:#fff !important;">Logout</a>

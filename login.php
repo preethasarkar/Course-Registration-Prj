@@ -20,12 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // If a row is found, the username and password are correct
             // Set session variable to indicate user is logged in
             $_SESSION['loggedin'] = true;
+            $_SESSION['user_id'] = $row['Login_ID']; // Assuming 'User_ID' is the column name in the 'login' table
             $_SESSION['role'] = $row['Role_ID']; // Assuming 'Role' is the column name in the 'login' table
             // Redirect based on role
             if ($_SESSION['role'] == 1) {
                 header("Location: admin_dashboard.php");
             } elseif ($_SESSION['role'] == 2) {
-                header("Location: user_dashboard.php");
+                header("Location: faculty_dashboard.php");
+            } elseif ($_SESSION['role'] == 3) {
+                header("Location: student_dashboard.php");
             } else {
                 // Default redirect if role is not recognized
                 header("Location: welcome.php");

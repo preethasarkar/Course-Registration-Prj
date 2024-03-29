@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $faculty_id=$_POST['faculty_id'];
 
     $sql="DELETE FROM faculty WHERE faculty_id=?";
-    $stmt = $con->prepare($sql);
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $faculty_id);
     $stmt->execute();
 
@@ -24,6 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Error: Form submission method not recognized.";
 }
 
-// Close the database connection
-$con->close();
+// Close the database connnection
+$conn->close();
 ?>

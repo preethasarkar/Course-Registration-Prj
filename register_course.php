@@ -9,7 +9,6 @@ session_start();
 
 $user_id = $_SESSION['user_id'];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Check if the course_id parameter is set in the POST request
     if (isset($_POST['course_id'])) {
         // Retrieve the course ID from the POST data
         $course_id = $_POST['course_id'];
@@ -32,10 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo "Error executing the SQL query: " . $conn->error;
     }
-
-
+        //To enter the newly registered course data into the registration table
         $sql1 = "INSERT INTO Registration ( Student_ID,Course_ID, Reg_date) VALUES ('$student_id','$course_id',CURDATE())";
-
         if ($conn->query($sql1) === TRUE) {
             // Registration successful
             echo "Course registered successfully!";

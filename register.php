@@ -51,10 +51,27 @@ echo ' <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5r
         </div>
     </nav>';
 
-    $sql = "SELECT * FROM Course C 
-            JOIN Student S on S.Dept_ID = C.Dept_ID and S.semester = C.Semester
+    //To select student_id of current user
+    $sql1 = "SELECT Student_ID FROM Student
+            WHERE Login_ID =$user_id";
+    $result1 = $conn->query($sql1);
+    if (!$result1) {
+        // Handle query execution error
+        echo "Error: " . $conn->error;
+    } else {
+        if ($result1->num_rows > 0) {
+            $reg_row = $result1->fetch_assoc();
+        } else {
+            // No matching records found
+            echo "No matching records found for the given Login_ID.";
+        }
+    }
+    //To select courses that are available according to the semester, department of the logged in student and the current date
+    $sql = "SELECT DISTINCT C.* FROM Course C 
+            JOIN Student S on S.Dept_ID = C.Dept_ID and S.Semester = C.Semester
             WHERE C.Course_ID NOT IN ( SELECT R.Course_ID
-                                        FROM Registration R where C.Course_ID = R.Course_ID and R.Student_ID = S.Student_ID)
+                                        FROM Registration R 
+                                        WHERE C.Course_ID = R.Course_ID and R.Student_ID = " . $reg_row["Student_ID"] . ")
             AND C.Course_Start_Date >= CURDATE(); ";
     $result = $conn->query($sql);
 
@@ -62,6 +79,7 @@ echo ' <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5r
         echo ' <div class="container mt-5">
             <div class="card-container mt-5">';
         while($row = $result->fetch_assoc()) {
+            //displays available courses as separate cards
             echo '<div class="card" style="width: 25rem;">
                         <img class="card-img-top" src="pic.jpg" alt="Card image cap">
                         <div class="card-body">

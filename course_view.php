@@ -11,7 +11,7 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5rem !important;">
-        <div class="container-fluid">
+            <div class="container-fluid">
         <a class="navbar-brand" href="#">Admin Dashboard</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,31 +37,38 @@
           </div>
         </div>
       </nav>
+    <div class="container">
+    <table  class="table mt-5">
+        <tr>
+            <th scope="col">Course Title</th>
+            <th scope="col">Faculty</th>
+            <th scope="col">L-T-P</th>
+            <th scope="col">Credits</th>
+            <th scope="col">Course Start Date</th>
+            <th scope="col">Course End Date</th>
 
-    <div class="container-fluid mt-5">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <?php
-            include_once 'db.php';
-            $sql = "SELECT * FROM course c JOIN faculty f ON c.Faculty_ID=f.FACULTY_ID";
-            $result = $conn->query($sql);
-            if ($result == TRUE) {
-                while ($row = $result->fetch_assoc()) { ?>
-                    <div class="col">
-                        <div class="card h-100" style="height: 50vh;">
-                            <img class="card-img-top" src="bg2.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Course Title: <?php echo $row["Course_Name"] ?> <br>
-                                <p class="card-text">Faculty: <?php echo $row["Faculty_Name"] ?> <br>
-                                <p class="card-text">L-T-P: <?php echo $row["LTP"] ?> <br>
-                                <p class="card-text">Credits: <?php echo $row["Credits"] ?> <br>
-                                <p class="card-text">Course Duration: <?php echo $row["Course_Start_Date"] . " to " . $row["Course_End_Date"] ?> <br>
-                            </div>
-                        </div>
-                    </div>
-            <?php }
-            } ?>
-        </div>
+        </tr>
+        <?php
+        // Fetch existing records from the database and display them in a table
+        include_once 'db.php'; // Include database connection
+        $sql = "SELECT * FROM course c JOIN faculty f ON c.Faculty_ID=f.FACULTY_ID";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row['Course_Name'] . "</td>";
+                echo "<td>" . $row['Faculty_Name'] . "</td>";
+                echo "<td>" . $row['LTP'] . "</td>";
+                echo "<td>" . $row['Credits'] . "</td>";
+                echo "<td>" . $row['Course_Start_Date'] . "</td>";
+                echo "<td>" . $row['Course_End_Date'] . "</td>";
+                echo "</tr>";
+            }
+        }
+        ?>
+    </table>
     </div>
+    <br>
 
 </body>
 

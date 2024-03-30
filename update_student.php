@@ -29,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $updates[] = "Student_Email = '$student_email'";
     }
 
-    if (isset($_POST['dept_id'])) {
-        $dept_id = $_POST['dept_id'];
-        $updates[] = "Dept_ID = '$dept_id'";
+    if (isset($_POST['studentSem'])) {
+        $semester = $_POST['studentSem'];
+        $updates[] = "Semester = '$semester'";
     }
     if (!empty($updates)) {
     // Combine all update statements

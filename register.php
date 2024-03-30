@@ -77,7 +77,9 @@
             WHERE C.Course_ID NOT IN ( SELECT R.Course_ID
                                         FROM Registration R 
                                         WHERE C.Course_ID = R.Course_ID and R.Student_ID = " . $reg_row["Student_ID"] . ")
+            AND S.Student_ID = " . $reg_row["Student_ID"] . "
             AND C.Course_Start_Date >= CURDATE(); ";
+    
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {

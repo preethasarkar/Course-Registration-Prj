@@ -15,16 +15,7 @@
     overflow-y: auto; /* Add vertical scrollbar if content overflows vertically */
 }
 
-.footer {
-    background-color: #202529; /* Semi-transparent black background for better contrast */
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-}
+
         table {
             margin-top: 20px;
             border-collapse: collapse;
@@ -150,6 +141,7 @@
             <input type="text" id="updateStudentName" name="studentName" placeholder="Student Name"><br>
             <input type="text" id="updateStudentPhone" name="studentPhone" placeholder="Student Phone"><br>
             <input type="text" id="updateStudentEmail" name="studentEmail" placeholder="Student Email"><br>
+            <input type="text" id="updateStudentSem" name="studentSem" placeholder="Semester"><br>
             <button type="button" onclick="submitUpdate()">Submit Update</button>
         </form>
     </div>
@@ -277,9 +269,6 @@
 
         }
     </script>
-<div class="footer">
-        <p>&copy; Course Project : DBMS CS254 </p>
-    </div>
 </body>
 
 </html>

@@ -38,10 +38,11 @@
         </div>
       </nav>
     <!--Table-->
-    <table border="1" class="mt-5">
+    <div class="container">
+    <table class="table mt-5">
         <tr>
-            <th>Department ID</th>
-            <th>Department Name</th>
+            <th scope="col">Department ID</th>
+            <th scope="col">Department Name</th>
         </tr>
         <?php
         // Fetch existing records from the database and display them in a table
@@ -58,6 +59,7 @@
         }
         ?>
     </table>
+    
 
     <!--INSERT-->
     <form id="insert_dept" method="post" action="insert_dept.php" class="mt-5">
@@ -65,6 +67,7 @@
         <button type="button" onClick="SQL_INSERT_DEPARTMENT()">Add New Department</button>
     </form>
     <br>
+    </div>
 
     <script>
         function SQL_INSERT_DEPARTMENT() {

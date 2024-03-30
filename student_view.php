@@ -10,6 +10,21 @@
     <style>
         /* Custom CSS styles */
         /* Add margin to the top of the student table */
+        /* Custom CSS styles */
+        body {
+    overflow-y: auto; /* Add vertical scrollbar if content overflows vertically */
+}
+
+.footer {
+    background-color: #202529; /* Semi-transparent black background for better contrast */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
         table {
             margin-top: 20px;
             border-collapse: collapse;
@@ -51,12 +66,36 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5rem !important;">
-        <span class="navbar-brand mb-0 h1">Online Course Registration</span>
-    </nav>
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Admin Dashboard</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="student_view.php">Student</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="faculty_view.php">Faculty</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="dept_view.php">Department</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="course_view.php">Courses</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <a class="nav-link" href="index.php" style="color:#fff !important;">Logout</a>
+          </div>
+        </div>
+      </nav>
 
     <!--STUDENT TABLE-->
     <!--INSERT-->
-    <form id="insert_student" method="post" action="insert_student.php">
+    <form id="insert_student" method="post" action="insert_student.php" class="mt-5">
 
         <input type="text" id="student_name" placeholder="Student Name"><br>
         <input type="text" id="student_email" placeholder="Student Email address"><br>
@@ -238,7 +277,9 @@
 
         }
     </script>
-
+<div class="footer">
+        <p>&copy; Course Project : DBMS CS254 </p>
+    </div>
 </body>
 
 </html>

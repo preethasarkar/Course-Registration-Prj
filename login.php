@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $row['Role_ID']; // Assuming 'Role' is the column name in the 'login' table
             // Redirect based on role
             if ($_SESSION['role'] == 1) {
-                header("Location: admin_dashboard.php");
+                header("Location: student_view.php");
             } elseif ($_SESSION['role'] == 2) {
                 header("Location: faculty_dashboard.php");
             } elseif ($_SESSION['role'] == 3) {

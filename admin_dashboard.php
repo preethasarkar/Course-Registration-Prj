@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    /* Add custom CSS styles for the text */
+    .main-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; 
+    }
+  </style>
 </head>
 
 <body>
@@ -39,13 +52,25 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="faculty_view.php">Faculty</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="dept_view.php">Department</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="course_view.php">Courses</a>
+              </li>
             </ul>
           </div>
           <div>
-            <a class="nav-link" href="?logout=true" style="color:#fff !important;">Logout</a>
+            <a class="nav-link" href="index.php" style="color:#fff !important;">Logout</a>
           </div>
         </div>
       </nav>
+
+      <div class="container">
+        <div class="main-text">
+          Welcome to the Admin Dashboard!
+        </div>
+      </div>
   <?php
     }
   } ?>

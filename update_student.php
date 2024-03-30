@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $updates = array();
 
     // Check if the student name is provided and add it to the update statement
-    if (isset($_POST['studentId'])) {
+    if (isset($_POST['studentName'])) {
         $student_name = $_POST['studentName'];
         $updates[] = "Student_Name = '$student_name'";
     }
@@ -24,6 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $updates[] = "Student_Phone_No = '$student_phone'";
     }
     // Repeat the process for other fields (student_email, dept_id, etc.)
+    if (isset($_POST['studentEmail'])) {
+        $student_email = $_POST['studentEmail'];
+        $updates[] = "Student_Email = '$student_email'";
+    }
+
+    if (isset($_POST['dept_id'])) {
+        $dept_id = $_POST['dept_id'];
+        $updates[] = "Dept_ID = '$dept_id'";
+    }
     if (!empty($updates)) {
     // Combine all update statements
     $update_statement = implode(", ", $updates);

@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_name = $_POST['student_name'];
     $dept_id = $_POST['dept_id'];
     $username = $_POST['username'];
-
+    $semester=$_POST['semester'];
     // Prepare the SQL statement to insert data into the student table
     $sql1 = "INSERT INTO login ( Role_ID,Username,Password) VALUES (?,?,?)";
     $stmt1 = $conn->prepare($sql1);
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $login_id = $row['Login_ID'];
 
-        $sql2 = "INSERT INTO student(Login_ID,Dept_ID,Student_Name,Student_Email,Student_Phone_No) VALUES ('$login_id','$dept_id','$student_name','$student_email','$student_phone') ";
+        $sql2 = "INSERT INTO student(Login_ID,Dept_ID,Student_Name,Student_Email,Student_Phone_No,Semester) VALUES ('$login_id','$dept_id','$student_name','$student_email','$student_phone','$semester') ";
         $result2=$conn->query($sql2);
 
         // Check if the insertion was successful

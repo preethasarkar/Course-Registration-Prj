@@ -5,20 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        /* Custom CSS styles */
+        /* Add margin to the top of the student table */
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        /* Style table header */
+        th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        /* Style table rows */
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        /* Style the input fields and buttons */
+        input[type="text"],
+        button {
+            margin-bottom: 10px;
+        }
+
+        /* Style the update form */
+        #updateForm {
+            margin-top: 20px;
+        }
+
+        /* Style the delete form */
+        #delete_student {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:5rem !important;">
+        <span class="navbar-brand mb-0 h1">Online Course Registration</span>
+    </nav>
+
     <!--STUDENT TABLE-->
     <!--INSERT-->
     <form id="insert_student" method="post" action="insert_student.php">
-        <!--<input type="text" id="student_id" placeholder="Student ID"><br>-->
+
         <input type="text" id="student_name" placeholder="Student Name"><br>
         <input type="text" id="student_email" placeholder="Student Email address"><br>
         <input type="text" id="student_phone" placeholder="Student Phone number"><br>
-        <!--<input type="text" id="login_id" placeholder="Login ID">-->
         <input type="text" id="dept_id" placeholder="Department ID"><br>
         <input type="text" id="username" placeholder="Username"><br>
-        <input type="text" id="password" placeholder="Passowrd"><br>
+        <input type="text" id="password" placeholder="Password"><br>
+        <input type="text" id="semester" placeholder="Semester"><br>
         <button type="button" onClick="SQL_INSERT_STUDENT()">ADD LOGIN</button>
     </form>
     <br>
@@ -65,7 +111,6 @@
             <input type="text" id="updateStudentName" name="studentName" placeholder="Student Name"><br>
             <input type="text" id="updateStudentPhone" name="studentPhone" placeholder="Student Phone"><br>
             <input type="text" id="updateStudentEmail" name="studentEmail" placeholder="Student Email"><br>
-            <input type="text" id="updateDeptId" name="dept_id" placeholder="Department ID"><br>
             <button type="button" onclick="submitUpdate()">Submit Update</button>
         </form>
     </div>
@@ -73,15 +118,15 @@
     <!--DELETE-->
     <form id="delete_student" method="post" action="delete_student.php">
         <input type="text" id="student_id_delete" placeholder="Student ID"><br>
-        <button type="submit" onClick="SQL_DELETE_STUDENT()">DELETE</button>
+        <button type="button" onClick="SQL_DELETE_STUDENT()">DELETE</button>
     </form>
 
     <script>
         function SQL_INSERT_STUDENT() {
 
             var form = document.getElementById("insert_student");
-            
-    
+
+
             // Create hidden input fields for student ID and phone number
             var input1 = document.createElement("input");
             input1.setAttribute("type", "hidden");
@@ -118,6 +163,12 @@
             input6.setAttribute("name", "username");
             input6.value = document.getElementById("username").value;
             form.appendChild(input6);
+
+            var input7 = document.createElement("input");
+            input7.setAttribute("type", "hidden");
+            input7.setAttribute("name", "semester");
+            input7.value = document.getElementById("semester").value;
+            form.appendChild(input7);
 
             // Submit the form
             // Create an AJAX request
@@ -161,15 +212,30 @@
         }
 
         function SQL_DELETE_STUDENT() {
-            var form = document.getElementById("delete_student");
+            var form1 = document.getElementById("delete_student");
 
             var input1 = document.createElement("input");
             input1.setAttribute("type", "hidden");
             input1.setAttribute("name", "student_id");
             input1.value = document.getElementById("student_id_delete").value;
-            form.appendChild(input1);
+            form1.appendChild(input1);
 
-            form.submit();
+            // Submit the form
+            // Create an AJAX request
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Alert the user about the success message
+                    alert(this.responseText);
+                    // Reset the form after successful insertion
+                    location.reload();
+                }
+            };
+            // Open a POST request to delete_student.php
+            xhttp.open("POST", "delete_student.php", true);
+            // Send the form data
+            xhttp.send(new FormData(form1));
+
         }
     </script>
 

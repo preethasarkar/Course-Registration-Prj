@@ -5,3 +5,5 @@ This project is a web-based course registration system designed to facilitate th
 2. Student registration
 3. Offered courses and enrolled courses
 4. Efficient course management through Admin dashboard.
+
+![login](assets/Login-page.png)
